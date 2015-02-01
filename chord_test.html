@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>test chord</title>
+    <script src="lib/d3/d3.min.js"></script>
+	<script src="lib/chords.js"></script>
+</head> 
+<body>   
+	<p>
+		<script>
+			test_chords = [
+					{'name': 'C', 'type': 'maj', 'toneNum': 3, 'formulaNames': ['C', 'E', 'G']},
+					{'name': 'C', 'type': 'min', 'toneNum': 3, 'formulaNames': ['C', 'D#', 'G']},
+					{'name': 'C', 'type': 'dim', 'toneNum': 3, 'formulaNames': ['C', 'D#', 'F#']},
+					{'name': 'C', 'type': 'aug', 'toneNum': 3, 'formulaNames': ['C', 'E', 'G#']},
+					{'name': 'C', 'type': 'dim', 'toneNum': 7, 'formulaNames': ['C', 'D#', 'F#', 'A']},
+					{'name': 'C', 'type': 'half-diminished', 'toneNum': 7, 'formulaNames': ['C', 'D#', 'F#', 'A#']},
+					{'name': 'C', 'type': 'min', 'toneNum': 7, 'formulaNames': ['C', 'D#', 'G', 'A#']},
+					{'name': 'C', 'type': 'mM', 'toneNum': 7, 'formulaNames': ['C', 'D#', 'G', 'B']},
+					{'name': 'C', 'type': 'aug', 'toneNum': 7, 'formulaNames': ['C', 'E', 'G#', 'A#']},
+					{'name': 'C', 'type': 'maj', 'toneNum': 7, 'formulaNames': ['C', 'E', 'G', 'B']},
+					{'name': 'C', 'type': 'dom', 'toneNum': 7, 'formulaNames': ['C', 'E', 'G', 'A#']},
+					{'name': 'C', 'toneNum': 7, 'formulaNames': ['C', 'E', 'G', 'A#']}];
+			test_chords.forEach(function(test_chord) {
+				document.write('in: ' + JSON.stringify(test_chord) + ',<br>');
+				out_chord = computeFormulaTones(test_chord);
+				document.write('out: ' + JSON.stringify(out_chord) + '<br>');
+				if(test_chord.formulaNames.length == out_chord.formulaNames.length) {
+					for_count = 0;
+					for(i = 0; i < test_chord.formulaNames.length; i++) {
+						if(test_chord.formulaNames[i] != out_chord.formulaNames[i]) {
+							document.write('.... ERROR!<br>');
+							break;
+						}
+						for_count++;
+					} if (for_count == test_chord.formulaNames.length) {
+						document.write('SUCCESS!<br>');
+					}
+				}
+				document.write('================================<br>');
+			});
+		</script>
+	</p>
+</body>
+</html>
