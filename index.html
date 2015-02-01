@@ -14,7 +14,7 @@
 		</select>
 	</div>
 	<div>
-		<select ng-model="selectType" ng-options="type for type in types">
+		<select ng-model="selectType" ng-options="type.text for type in types">
 			<option value="">-- 請選擇類型 --</option>
 		</select>
 	</div>
@@ -24,7 +24,7 @@
 		</select>
 	</div>
 	<form ng-submit>
-	<p>和弦名稱 : <a ng-show="selectName!=null">{{ selectName }}{{ selectType }}{{ selectToneNum }}</a></p>
-	<p>組成音：<a ng-repeat="formulaName in formulaNames">{{formulaName}} </a></p>
+	<p>和弦名稱：<a ng-show="selectName!=null" ng-repeat="chordName in chordNames">{{chordName}}, </a></p>
+	<p>組成音：<a ng-show="selectName!=null" ng-repeat="formulaName in formulaNames">{{formulaName}} </a></p>
 </body>
 </html>
