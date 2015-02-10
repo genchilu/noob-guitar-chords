@@ -1,18 +1,7 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title>draw guitar tab</title>
-    <script src="lib/d3/d3.min.js"></script>
-	<script src="lib/chords.js"></script>
-</head> 
-<body>   
-    <div id="tab"></div>
-	<p>
-		<script src="lib/tab.js"></script>
-		<script>
-			redraw_string_position({"string_i":0, "fret_i":2});
-			redraw_string_position({"string_i":3, "fret_i":3});
-		</script>
-	</p>
-</body>
-</html>
+﻿<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+<script src="lib/d3/d3.min.js"></script>
+<script src="lib/tabDrawerCtrl.js"></script>
+
+<div ng-app="tabDrawer" ng-controller="Ctrl">
+    <tab chart-data="myData"  ></tab>
+</div>

@@ -26,14 +26,11 @@
 		</select>
 	</div>
 	<form ng-submit>
-	<p>和弦名稱：<a ng-show="selectName!=null" ng-repeat="chordName in chordNames">{{chordName}}, </a></p>
-	<p>組成音：<a ng-show="selectName!=null" ng-repeat="formulaName in formulaNames">{{formulaName}} </a></p>
-	<p>和弦按法：<a ng-show="selectName!=null" ng-repeat="stringWithFret in allStringWithFret">
-	    <div id="tab"></div>
-		<script src="lib/tabDrawer.js"></script>
-		<script>
-			reDrawStringWithFret(stringWithFret);
-		</script>
-	</a></p>
+		<p>和弦名稱：<a ng-show="selectName!=null" ng-repeat="chordName in chordNames">{{chordName}}, </a></p>
+		<p>組成音：<a ng-show="selectName!=null" ng-repeat="formulaName in formulaNames">{{formulaName}} </a></p>
+		<p>和弦按法：<a id ="tab" ng-show="selectName!=null" ng-repeat="stringWithFret in allStringWithFret">
+			<script>console.log({{stringWithFret}})</script>
+		</a></p>
+	</form>
 </body>
 </html>
