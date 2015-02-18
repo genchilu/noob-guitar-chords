@@ -42,7 +42,7 @@
 		function computeChordInfo(inputInfo) {
 			if(inputInfo.name) {
 				try {
-					chordInfo = computeFormulaTones(inputInfo);
+					var chordInfo = computeFormulaTones(inputInfo);
 					$scope.chordNames = chordInfo.chordNames;
 					$scope.formulaTones = chordInfo.formulaTones;
 					$scope.formulaNames = chordInfo.formulaNames;

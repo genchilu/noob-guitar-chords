@@ -1,11 +1,10 @@
 ﻿noobGuitarChords.directive('tab', function ($parse) {
 	var directiveDefinitionObject = {
 		restrict: 'E',
-		replace: false,
 		scope: {data: '=data'},
 		link: function (scope, element, attrs) {
-			string_dest = 60;
-			fretwire_dest = 80;
+			var string_dest = 20;
+			var fretwire_dest = 30;
 			var tab = d3.select(element[0])
 						.append("svg:svg")
 						.attr("width", string_dest * 5 + 80)   
@@ -13,9 +12,9 @@
 			x = 0 + 40;
 			y = fretwire_dest/2 + 40;
 
-			d3StringFret = [];
-			d3StringName = [];
-			originalStringScale = [4, 9, 4, 7, 11, 7];
+			var d3StringFret = [];
+			var d3StringName = [];
+			var originalStringScale = [4, 9, 2, 7, 11, 4];
 			//draw fretwire
 			for(i = 0; i < 5; i++) {
 				tab.append("svg:line")
@@ -32,20 +31,20 @@
 				d3StringName[string_i] = tab.append("text")
 											.attr('x', x + string_i * string_dest - 10)
 											.attr('y', y - fretwire_dest/2)
-											.style('font-size', '24px')
+											.style('font-size', '18px')
 											.style('font-weight', 'bold')
 											.text(twelveTonesScale2Name[originalStringScale[string_i]]);
 				tab.append("svg:line")
 						.attr("x1", x + string_i * string_dest)
 						.attr("y1", y)
 						.attr("x2", x + string_i * string_dest)
-						.attr("y2", y + 6 * fretwire_dest)
+						.attr("y2", y + 4 * fretwire_dest)
 						.attr("calss", "string")
 						.style("stroke", "rgb(0, 0, 0)")
 						.style("stroke-width", 4);
 
 				for(fret_i = 1; fret_i < 5; fret_i++) {
-					prev_y = y + (fret_i - 1) * fretwire_dest;
+					var prev_y = y + (fret_i - 1) * fretwire_dest;
 					d3StringFret[string_i][fret_i] = tab.append("svg:circle")
 														.style("fill", "steelblue")
 														.attr("cx", x + string_i * string_dest)
@@ -54,7 +53,6 @@
 														.attr("r", 10);
 				}
 			}
-			console.log(scope.data);
 			scope.data.forEach(function(fret, string){
 				if(fret == 'x') {
 					d3StringName[string].text('X');

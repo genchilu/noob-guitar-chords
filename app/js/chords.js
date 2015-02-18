@@ -63,7 +63,7 @@ function computeFormulaTones(opt) {
 		toneNum = opt.toneNum;
 	}
 	//Major chord
-	root = twelveTonesName2Scale[name];
+	var root = twelveTonesName2Scale[name];
 	var chordNames = [];
 	var formulaTones;
 	var formulaNames
