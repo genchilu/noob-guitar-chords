@@ -92,6 +92,7 @@ function computeFormulaTones(opt) {
 		//third
 		if(toneNum == 3) {
 			chordNames.push(name + 'min');
+			chordNames.push(name + 'm');
 			formulaTones = [root, (root + 3) % 12, (root + 7) % 12];
 			formulaNames = formulaTonesToName(formulaTones);
 		}
