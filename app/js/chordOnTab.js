@@ -20,22 +20,20 @@ function chordOnTabToStringWithFret(formulaTones, chordOnTab, allStringWithFret)
 			if(allTones.size == formulaTones.length) {
 				var newStringWithFret = [];
 				chordOnTab.forEach(function(tone, index){
-					fretNo = stringWithScale[index].indexOf(tone);
-					if(fretNo == -1) {
-						fretNo = 'x';
-					}
+					fretNo = stringWithScale[index].indexOf(tone) != -1 ? 
+								stringWithScale[index].indexOf(tone) : 'x';
 					newStringWithFret[index] = fretNo; 
 				});
 				//determined chord is duplicate or not
-				var isFirstAppear = false;
-				isFirstAppear = allStringWithFret.every(function(stringWithFret){
+				var isDuplicate = false;
+				isDuplicate = allStringWithFret.some(function(stringWithFret){
 					var isSame = false;
 					isSame = stringWithFret.every(function(fret, string){
 						return newStringWithFret[string] == fret;
 					});
-					return !isSame;
+					return isSame;
 				});
-				if(isFirstAppear) {
+				if(!isDuplicate) {
 					allStringWithFret.push(newStringWithFret);
 				}
 			}
