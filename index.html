@@ -28,8 +28,9 @@
 		</select>
 	</div>
 	<form ng-submit>
-		<p>和弦名稱：<a ng-show="selectName!=null" ng-repeat="chordName in chordNames">{{chordName}}, </a></p>
-		<p>組成音：<a ng-show="selectName!=null" ng-repeat="formulaName in formulaNames">{{formulaName}} </a></p>
+		<p>和弦名稱：
+			<a ng-show="selectName!=null" ng-repeat="chordName in chordNames" ng-bind-html="TrustDangerousSnippet(chordName)"></a></p>
+		<p>組成音：<a ng-show="selectName!=null" ng-repeat="formulaName in formulaNames"><a ng-bind-html='formulaName'>, </a></p>
 		<p>和弦按法：<a id ="tab" ng-show="selectName!=null" ng-repeat="stringWithFret in allStringWithFret track by $index">
 			<div>
 				<tab data="stringWithFret" ></tab>

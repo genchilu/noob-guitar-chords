@@ -1,5 +1,8 @@
-﻿noobGuitarChords.controller("chordsCtrl", function($scope) {
+﻿noobGuitarChords.controller("chordsCtrl", function($scope, $sce) {
 		var inputInfo = {};
+	    $scope.TrustDangerousSnippet = function(post) {
+			return $sce.trustAsHtml(post);
+	    }; 
 		$scope.names = [ 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B' ];
 		$scope.types = [ {'text': 'major, maj, M', 'value': 'maj'},
 						 {'text': 'minor, min, m', 'value': 'min'},

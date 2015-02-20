@@ -137,7 +137,7 @@ function computeFormulaTones(opt) {
 		}
 		//7th
 		else if(toneNum == 7) {
-			chordNames.push(name + 'dim7');
+			chordNames.push(name + 'dim<sup>7</sup>');
 			formulaTones = [root, (root + 3) % 12, (root + 6) % 12, (root + 9) % 12];
 			formulaNames = formulaTonesToName(formulaTones);
 		}
@@ -150,7 +150,7 @@ function computeFormulaTones(opt) {
 	else if(type == 'half-diminished') {
 		//7th
 		if(toneNum == 7) {
-			chordNames.push(name + 'm7b5');
+			chordNames.push(name + 'm7<sup>b5</sup>');
 			formulaTones = [root, (root + 3) % 12, (root + 6) % 12, (root + 10) % 12];
 			formulaNames = formulaTonesToName(formulaTones);
 		}
