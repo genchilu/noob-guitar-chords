@@ -6,19 +6,21 @@
 			scope.$watch('data', function(newValue, oldValue) {
 				//if (newValue !== oldValue) {
 					// You actions here
-					console.log("I got the new value! ", newValue);
-					console.log(scope.data);
-					scope.data.forEach(function(fret, string){
-						d3StringFret[string].forEach(function(d3Fret){
-							d3Fret.attr("visibility", "hidden");
-						});
+					scope.data['new'].forEach(function(fret, string){
 						if(fret == 'x') {
 							d3StringName[string].text('X');
-						} else if(fret > 0){
-							d3StringFret[string][fret].attr("visibility", "visible");
+						} else {
 							scale = originalStringScale[string];
 							scale = (scale + fret) % 12;
 							d3StringName[string].text(twelveTonesScale2Name[scale]);
+						}
+					});
+					scope.data['origin'].forEach(function(fret, string){
+						d3StringFret[string].forEach(function(d3Fret){
+							d3Fret.attr("visibility", "hidden");
+						});
+						if(fret > 0){
+							d3StringFret[string][fret].attr("visibility", "visible");
 						}
 					});
 				//}

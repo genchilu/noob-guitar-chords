@@ -8,6 +8,12 @@
 };
 
 function chordOnTabToStringWithFret(formulaTones, chordOnTab, allStringWithFret) {
+	var originStringWithFret = [];
+	chordOnTab.forEach(function(tone, index){
+		fretNo = stringWithScale[index].indexOf(tone) != -1 ? 
+					stringWithScale[index].indexOf(tone) : 'x';
+		originStringWithFret[index] = fretNo; 
+	});
 	for(string_i = 0; string_i < 6 - formulaTones.length; string_i++) {
 		if(chordOnTab[string_i] == formulaTones[0]) {
 			var allTones = new Set();
@@ -28,13 +34,13 @@ function chordOnTabToStringWithFret(formulaTones, chordOnTab, allStringWithFret)
 				var isDuplicate = false;
 				isDuplicate = allStringWithFret.some(function(stringWithFret){
 					var isSame = false;
-					isSame = stringWithFret.every(function(fret, string){
+					isSame = stringWithFret['new'].every(function(fret, string){
 						return newStringWithFret[string] == fret;
 					});
 					return isSame;
 				});
 				if(!isDuplicate) {
-					allStringWithFret.push(newStringWithFret);
+					allStringWithFret.push({'new' :newStringWithFret, 'origin': originStringWithFret});
 				}
 			}
 		}
