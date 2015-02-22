@@ -23,7 +23,7 @@ twelveTonesScale2Name = {
 	6  : 'F#',
 	7  : 'G',
 	8  : 'G#',
-	9 : 'A',
+	9  : 'A',
 	10 : 'A#',
 	11 : 'B'
 };
@@ -43,18 +43,18 @@ function computeFormulaTones(opt) {
 	var toneNum;
 	if(!opt.toneNum && !opt.type) {
 		type = 'maj';
-		toneNum = 3;
+		toneNum = '三和弦';
 	} else if (!opt.toneNum) {
 		if(opt.type == 'half-diminished' || opt.type == 'mM') {
-			toneNum = 7;
+			toneNum = '七和弦';
 		} else {
-			toneNum = 3;
+			toneNum = '三和弦';
 		}
 		type = opt.type;
 	} else if(!opt.type) {
-		if(opt.toneNum == 3) {
+		if(opt.toneNum == '三和弦') {
 			type = 'maj';
-		} else if (opt.toneNum == 7) {
+		} else if (opt.toneNum == '七和弦') {
 			type = 'dom';
 		}
 		toneNum = opt.toneNum;
@@ -69,16 +69,17 @@ function computeFormulaTones(opt) {
 	var formulaNames
 	if(type == 'maj') {
 		//third
-		if(toneNum == 3) {
+		if(toneNum == '三和弦') {
 			chordNames.push(name);
 			chordNames.push(name + 'maj');
 			formulaTones = [root, (root + 4) % 12, (root + 7) % 12];
 			formulaNames = formulaTonesToName(formulaTones);
 		}
 		//7th
-		else if(toneNum == 7) {
+		else if(toneNum == '七和弦') {
 			chordNames.push(name + 'M7');
 			chordNames.push(name + 'maj7');
+			chordNames.push(name + '<sup>j7</sup>');
 			formulaTones = [root, (root + 4) % 12, (root + 7) % 12, (root + 11) % 12];
 			formulaNames = formulaTonesToName(formulaTones);
 		}
@@ -90,16 +91,17 @@ function computeFormulaTones(opt) {
 	//minor chord
 	else if(type == 'min') {
 		//third
-		if(toneNum == 3) {
+		if(toneNum == '三和弦') {
 			chordNames.push(name + 'min');
 			chordNames.push(name + 'm');
 			formulaTones = [root, (root + 3) % 12, (root + 7) % 12];
 			formulaNames = formulaTonesToName(formulaTones);
 		}
 		//7th
-		else if(toneNum == 7) {
+		else if(toneNum == '七和弦') {
 			chordNames.push(name + 'm7');
 			chordNames.push(name + 'min7');
+			chordNames.push(name + '-<sup>7</sup>');
 			formulaTones = [root, (root + 3) % 12, (root + 7) % 12, (root + 10) % 12];
 			formulaNames = formulaTonesToName(formulaTones);
 		}
@@ -111,13 +113,13 @@ function computeFormulaTones(opt) {
 	//augmented
 	else if(type == 'aug') {
 		//third
-		if(toneNum == 3) {
+		if(toneNum == '三和弦') {
 			chordNames.push(name + 'aug');
 			formulaTones = [root, (root + 4) % 12, (root + 8) % 12];
 			formulaNames = formulaTonesToName(formulaTones);
 		}
 		//7th
-		else if(toneNum == 7) {
+		else if(toneNum == '七和弦') {
 			chordNames.push(name + 'aug7');
 			formulaTones = [root, (root + 4) % 12, (root + 8) % 12, (root + 10) % 12];
 			formulaNames = formulaTonesToName(formulaTones);
@@ -130,13 +132,13 @@ function computeFormulaTones(opt) {
 	//diminished
 	else if(type == 'dim') {
 		//third
-		if(toneNum == 3) {
+		if(toneNum == '三和弦') {
 			chordNames.push(name + 'dim');
 			formulaTones = [root, (root + 3) % 12, (root + 6) % 12];
 			formulaNames = formulaTonesToName(formulaTones);
 		}
 		//7th
-		else if(toneNum == 7) {
+		else if(toneNum == '七和弦') {
 			chordNames.push(name + 'dim<sup>7</sup>');
 			formulaTones = [root, (root + 3) % 12, (root + 6) % 12, (root + 9) % 12];
 			formulaNames = formulaTonesToName(formulaTones);
@@ -149,8 +151,9 @@ function computeFormulaTones(opt) {
 	//Half-diminished
 	else if(type == 'half-diminished') {
 		//7th
-		if(toneNum == 7) {
+		if(toneNum == '七和弦') {
 			chordNames.push(name + 'm7<sup>b5</sup>');
+			chordNames.push(name + '-7<sup>(b5)</sup>');
 			formulaTones = [root, (root + 3) % 12, (root + 6) % 12, (root + 10) % 12];
 			formulaNames = formulaTonesToName(formulaTones);
 		}
@@ -161,9 +164,10 @@ function computeFormulaTones(opt) {
 	}
 	//minor-major seventh chord
 	else if(type == 'mM'){
-		if(toneNum == 7) {
+		if(toneNum == '七和弦') {
 			chordNames.push(name + 'mM7');
 			chordNames.push(name + 'm maj7');
+			chordNames.push(name + '-<sup>(j7)</sup>');
 			formulaTones = [root, (root + 3) % 12, (root + 7) % 12, (root + 11) % 12];
 			formulaNames = formulaTonesToName(formulaTones);
 		}
@@ -174,7 +178,7 @@ function computeFormulaTones(opt) {
 	}
 	//Dominant 
 	else if(type == 'dom') {
-		if(toneNum == 7) {
+		if(toneNum == '七和弦') {
 			chordNames.push(name + '7');
 			chordNames.push(name + 'dom7');
 			formulaTones = [root, (root + 4) % 12, (root + 7) % 12, (root + 10) % 12];

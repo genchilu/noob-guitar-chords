@@ -12,7 +12,15 @@
 						} else {
 							scale = originalStringScale[string];
 							scale = (scale + fret) % 12;
-							d3StringName[string].text(twelveTonesScale2Name[scale]);
+							toneName = twelveTonesScale2Name[scale];
+							d3StringName[string].text(toneName);
+							if(toneName.length == 1) {
+								d3StringName[string].attr('x', x + string * string_dest - 4);
+							}
+							if(toneName.length == 2) {
+								d3StringName[string].attr('x', x + string * string_dest - 6);
+							}
+							//.attr('x', x + string_i * string_dest - 5);
 						}
 					});
 					scope.data['origin'].forEach(function(fret, string){
@@ -51,9 +59,9 @@
 			for(string_i = 0; string_i < 6; string_i++) {
 				d3StringFret[string_i] = [];
 				d3StringName[string_i] = tab.append("text")
-											.attr('x', x + string_i * string_dest - 10)
+											.attr('x', x + string_i * string_dest - 4)
 											.attr('y', y - fretwire_dest/2)
-											.style('font-size', '18px')
+											.style('font-size', '12px')
 											.style('font-weight', 'bold')
 											.text(twelveTonesScale2Name[originalStringScale[string_i]]);
 				tab.append("svg:line")

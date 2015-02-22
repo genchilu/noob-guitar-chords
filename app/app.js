@@ -1,1 +1,1 @@
-﻿noobGuitarChords = angular.module("noobGuitarChords", []);
+﻿noobGuitarChords = angular.module('noobGuitarChords', []);

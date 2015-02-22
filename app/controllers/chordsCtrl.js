@@ -1,6 +1,6 @@
 ﻿noobGuitarChords.controller("chordsCtrl", function($scope, $sce) {
 		var inputInfo = {};
-	    $scope.TrustDangerousSnippet = function(post) {
+	    $scope.trustDangerousSnippet = function(post) {
 			return $sce.trustAsHtml(post);
 	    }; 
 		$scope.names = [ 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B' ];
@@ -13,7 +13,7 @@
 						 {'text': 'augmented major', 'value': 'augmented major'},
 						 {'text': 'dominant', 'value': 'dom'}];
 
-		$scope.toneNum = [ 3, 7 ];
+		$scope.toneNum = [ '三和弦', '七和弦' ];
 		$scope.chordNames = [];
 		$scope.formulaTones = [];
 		$scope.formulaNames = [];
