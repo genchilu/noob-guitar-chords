@@ -82,3 +82,21 @@ function computeFormulaOnTab(formulaTones) {
 	});
 	return allStringWithFret;
 };
+
+function showStringToneName(fret, string, d3StringName) {
+	console.log('11');
+	if(fret == 'x') {
+		d3StringName[string].text('X');
+	} else {
+		var scale = originalStringScale[string];
+		scale = (scale + fret) % 12;
+		toneName = twelveTonesScale2Name[scale];
+		d3StringName[string].text(toneName);
+		if(toneName.length == 1) {
+			d3StringName[string].attr('x', x + string * string_dest - 4);
+		}
+		if(toneName.length == 2) {
+			d3StringName[string].attr('x', x + string * string_dest - 6);
+		}
+	}
+}

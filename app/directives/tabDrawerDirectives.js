@@ -4,34 +4,33 @@
 		scope: {data: '=data'},
 		link: function (scope, element, attrs) {
 			scope.$watch('data', function(newValue, oldValue) {
-				//if (newValue !== oldValue) {
-					// You actions here
-					scope.data['new'].forEach(function(fret, string){
-						if(fret == 'x') {
-							d3StringName[string].text('X');
-						} else {
-							scale = originalStringScale[string];
-							scale = (scale + fret) % 12;
-							toneName = twelveTonesScale2Name[scale];
-							d3StringName[string].text(toneName);
-							if(toneName.length == 1) {
-								d3StringName[string].attr('x', x + string * string_dest - 4);
-							}
-							if(toneName.length == 2) {
-								d3StringName[string].attr('x', x + string * string_dest - 6);
-							}
-							//.attr('x', x + string_i * string_dest - 5);
+				scope.data['new'].forEach(function(fret, string){
+					/*
+					if(fret == 'x') {
+						d3StringName[string].text('X');
+					} else {
+						var scale = originalStringScale[string];
+						scale = (scale + fret) % 12;
+						toneName = twelveTonesScale2Name[scale];
+						d3StringName[string].text(toneName);
+						if(toneName.length == 1) {
+							d3StringName[string].attr('x', x + string * string_dest - 4);
 						}
-					});
-					scope.data['origin'].forEach(function(fret, string){
-						d3StringFret[string].forEach(function(d3Fret){
-							d3Fret.attr("visibility", "hidden");
-						});
-						if(fret > 0){
-							d3StringFret[string][fret].attr("visibility", "visible");
+						if(toneName.length == 2) {
+							d3StringName[string].attr('x', x + string * string_dest - 6);
 						}
+					}
+					*/
+					showStringToneName(fret, string, d3StringName);
+				});
+				scope.data['origin'].forEach(function(fret, string){
+					d3StringFret[string].forEach(function(d3Fret){
+						d3Fret.attr("visibility", "hidden");
 					});
-				//}
+					if(fret > 0){
+						d3StringFret[string][fret].attr("visibility", "visible");
+					}
+				});
 			}, true);
 			var string_dest = 20;
 			var fretwire_dest = 30;
