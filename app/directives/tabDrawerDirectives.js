@@ -5,13 +5,12 @@
 		link: function (scope, element, attrs) {
 			scope.$watch('data', function(newValue, oldValue) {
 				scope.data['new'].forEach(function(fret, string){
-					/*
 					if(fret == 'x') {
 						d3StringName[string].text('X');
 					} else {
 						var scale = originalStringScale[string];
 						scale = (scale + fret) % 12;
-						toneName = twelveTonesScale2Name[scale];
+						var toneName = twelveTonesScale2Name[scale];
 						d3StringName[string].text(toneName);
 						if(toneName.length == 1) {
 							d3StringName[string].attr('x', x + string * string_dest - 4);
@@ -19,9 +18,7 @@
 						if(toneName.length == 2) {
 							d3StringName[string].attr('x', x + string * string_dest - 6);
 						}
-					}
-					*/
-					showStringToneName(fret, string, d3StringName);
+					}			
 				});
 				scope.data['origin'].forEach(function(fret, string){
 					d3StringFret[string].forEach(function(d3Fret){

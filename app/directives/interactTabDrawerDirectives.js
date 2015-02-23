@@ -34,8 +34,32 @@
 						d3StringName[string_i] = tab.append("text")
 													.attr('x', x + string_i * string_dest - 4)
 													.attr('y', y - fretwire_dest/2)
+													.attr('string', string_i)
 													.style('font-size', '12px')
 													.style('font-weight', 'bold')
+													.on("mouseover", function(){
+														d3.select(this)
+															.style("stroke", "rgb(255, 0, 0)")
+														.style('font-size', '13px');
+													})
+													.on("mouseout", function(){
+														d3.select(this)
+															.style("stroke", "rgb(0, 0, 0)")
+														.style('font-size', '12px');
+													})
+													.on("click", function(){
+														var string = parseInt(this.getAttribute('string'));
+														if(this.childNodes[0].nodeValue == 'X') {
+															d3.select(this)
+																.text(twelveTonesScale2Name[originalStringScale[string]]);
+														} else {
+															d3StringFret[string].forEach(function(d3Fret){
+																d3Fret.attr("visibility", "hidden");
+															});
+															d3.select(this).text('X');
+														}
+													})
+													.style("stroke", "rgb(0, 0, 0)")
 													.text(twelveTonesScale2Name[originalStringScale[string_i]]);
 					} 
 					if(fret_i > 0) {
@@ -64,7 +88,7 @@
 							})
 							.on("click", function() {
 								var string = this.getAttribute('string');
-								var fret = this.getAttribute('fret');
+								var fret = parseInt(this.getAttribute('fret'));
 								if(d3StringFret[string][fret][0][0].getAttribute("visibility") == 'hidden') {
 									d3StringFret[string].forEach(function(d3Fret){
 										d3Fret.attr("visibility", "hidden");
@@ -72,8 +96,32 @@
 									if(fret > 0){
 										d3StringFret[string][fret].attr("visibility", "visible");
 									}
+									if(fret == 'x') {
+										d3StringName[string].text('X');
+									} else {
+										var scale = originalStringScale[string];
+										var tmp = scale + fret;
+										scale = (scale + fret) % 12;
+										var toneName = twelveTonesScale2Name[scale];
+										d3StringName[string].text(toneName);
+										if(toneName.length == 1) {
+											d3StringName[string].attr('x', x + string * string_dest - 4);
+										}
+										if(toneName.length == 2) {
+											d3StringName[string].attr('x', x + string * string_dest - 6);
+										}
+									}
 								} else {
 									d3StringFret[string][fret].attr("visibility", "hidden");
+									var scale = originalStringScale[string];
+									var toneName = twelveTonesScale2Name[scale];
+									d3StringName[string].text(toneName);
+									if(toneName.length == 1) {
+										d3StringName[string].attr('x', x + string * string_dest - 4);
+									}
+									if(toneName.length == 2) {
+										d3StringName[string].attr('x', x + string * string_dest - 6);
+									}
 								}
 								//console.log(d3StringFret[string][fret][0][0].getAttribute("visibility"));
 							})
